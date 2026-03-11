@@ -5,9 +5,11 @@ test('BrightBud login', async ({ page }) => {
 
   await page.goto('https://brightbud.ai');
 
-  await page.waitForLoadState('networkidle');
+  const loginButton = page.getByRole('button', { name: /login/i });
 
-  await page.getByRole('button', { name: /login/i }).click();
+  await loginButton.waitFor({ state: 'visible' });
+
+  await loginButton.click();
 
   await page.getByRole('button', { name: /continue with email/i }).click();
 
