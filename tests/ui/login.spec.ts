@@ -3,20 +3,20 @@ import { users } from '../../utils/testData';
 
 test('BrightBud login', async ({ page }) => {
 
-  await page.goto('https://brightbud.ai');
+  await page.goto('https://brightbud.ai', { waitUntil: 'domcontentloaded' });
 
-  const loginButton = page.getByRole('button', { name: /login/i });
+  await page.waitForTimeout(3000);
 
-  await loginButton.waitFor({ state: 'visible' });
+  const loginButton = page.locator('text=Login');
 
   await loginButton.click();
 
-  await page.getByRole('button', { name: /continue with email/i }).click();
+  await page.locator('text=Continue with Email').click();
 
-  await page.getByLabel(/email/i).fill(users.validUser.email);
+  await page.locator('input[type="email"]').fill(users.validUser.email);
 
   await page.locator('input[type="password"]').fill(users.validUser.password);
 
-  await page.getByRole('button', { name: /continue/i }).click();
+  await page.locator('text=Continue').click();
 
 });
