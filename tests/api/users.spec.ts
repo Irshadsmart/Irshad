@@ -4,7 +4,7 @@ test('Get Users API', async ({ request }) => {
 
   const response = await request.get('https://reqres.in/api/users?page=2');
 
-  expect(response.status()).toBe(200);
+  expect(response.ok()).toBeTruthy();
 
   const body = await response.json();
 

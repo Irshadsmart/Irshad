@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { DashboardPage } from '../../pages/DashboardPage';
 
-test.use({ storageState: 'auth.json' });
+
 
 test('Dashboard loads successfully', async ({ page }) => {
 
