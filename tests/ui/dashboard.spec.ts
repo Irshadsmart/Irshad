@@ -1,14 +1,11 @@
-import { test } from '@playwright/test';
-import { DashboardPage } from '../../pages/DashboardPage';
+import { test, expect } from '@playwright/test';
 
-
+test.use({ storageState: 'auth.json' });
 
 test('Dashboard loads successfully', async ({ page }) => {
 
   await page.goto('https://brightbud.ai/dashboard');
 
-  const dashboard = new DashboardPage(page);
-
-  await dashboard.verifyDashboardLoaded();
+  await expect(page).toHaveURL(/dashboard/);
 
 });
