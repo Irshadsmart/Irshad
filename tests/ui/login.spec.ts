@@ -1,9 +1,16 @@
-import { test, expect } from '@playwright/test';
+import { test } from '../../fixtures/testFixtures';
+import { LoginPage } from '../../pages/LoginPage';
 
-test('BrightBud login page loads', async ({ page }) => {
+test('Login page loads', async ({ page }) => {
 
-  await page.goto('https://brightbud.ai/login');
+  const login = new LoginPage(page);
 
-  await expect(page).toHaveURL(/login|brightbud/i);
+  await test.step('Open login page', async () => {
+    await login.open();
+  });
+
+  await test.step('Verify login page loaded', async () => {
+    await login.verifyLoginPage();
+  });
 
 });

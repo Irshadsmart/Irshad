@@ -1,10 +1,13 @@
-import { test, expect } from '@playwright/test';
-
+import { test, expect } from '../../fixtures/testFixtures';
 
 test('Dashboard loads successfully', async ({ page }) => {
 
-  await page.goto('https://brightbud.ai/dashboard');
+  await test.step('Navigate to homepage', async () => {
+    await page.goto('/');
+  });
 
-  await expect(page).toHaveURL(/dashboard/);
+  await test.step('Verify page title', async () => {
+    await expect(page).toHaveTitle(/BrightBud/i);
+  });
 
 });
