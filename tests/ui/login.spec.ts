@@ -3,15 +3,8 @@ import { users } from '../../utils/testData';
 
 test('BrightBud login', async ({ page }) => {
 
-  await page.goto('https://brightbud.ai', { waitUntil: 'domcontentloaded' });
-
-  // wait for page to render
-  await page.waitForTimeout(5000);
-
-  // more reliable locator
-  const loginButton = page.getByRole('button', { name: /login/i });
-
-  await loginButton.first().click();
+  // Open login page directly
+  await page.goto('https://brightbud.ai/login', { waitUntil: 'domcontentloaded' });
 
   await page.getByRole('button', { name: /continue with email/i }).click();
 
